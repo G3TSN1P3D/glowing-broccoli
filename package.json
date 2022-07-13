@@ -1,0 +1,21 @@
+{
+  "name": "glowing-broccoli",
+  "version": "1.0.0",
+  "description": "Repo for our baseball scorecard web app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/G3TSN1P3D/glowing-broccoli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/G3TSN1P3D/glowing-broccoli/issues"
+  },
+  "homepage": "https://github.com/G3TSN1P3D/glowing-broccoli#readme"
+}

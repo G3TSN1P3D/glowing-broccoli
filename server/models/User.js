@@ -6,10 +6,10 @@ const playerSchema = require("./Player");
 const userSchema = new Schema(
   {
     // _id: ObjectId(),
-    // first_name: {
-    //   type: String,
-    //   required: true,
-    // },
+    first_name: {
+      type: String,
+      required: true,
+    },
     last_name: {
       type: String,
       required: true,
@@ -24,7 +24,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    players: [playerSchema],
+    savedPlayers: [playerSchema],
   },
   {
     toJSON: {
@@ -49,7 +49,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 userSchema.virtual("playerCount").get(function () {
-  return this.playerId.length;
+  return this.savedPlayers.length;
 });
 
 const User = model("User", userSchema);

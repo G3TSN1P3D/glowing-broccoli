@@ -1,13 +1,13 @@
 const { Schema } = require("mongoose");
 
 const statSchema = new Schema({
-  _id: ObjectId(),
+  // _id: ObjectId(),
   inning: {
     type: Number,
     required: true,
   },
   order: {
-    type: String,
+    type: Number,
     required: true,
   },
   balls: {

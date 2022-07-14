@@ -3,7 +3,7 @@ const { Schema } = require("mongoose");
 const statSchema = require("./Stat");
 
 const playerSchema = new Schema({
-  _id: ObjectId(),
+  _id:  ObjectId(),
   firstName: {
     type: String,
     required: true,

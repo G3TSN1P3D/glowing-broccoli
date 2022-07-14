@@ -7,16 +7,15 @@ const typeDefs = gql`
         last_name: String!
         email: String!
         password: String!
-        players: [Players]
+        savedPlayers: [Players]
     }
     type Players {
-        _id: ID!
-        first_name: String!
+        first_name: String
         last_name: String!
-        number: Int
-        position: [String]
-        handedness: String
-        stats: [Stats]
+        number: Int!
+        position: [String]!
+        handedness: String!
+        statId: [Stats]!
     }
     type Stats {
         inning: Int
@@ -31,6 +30,7 @@ const typeDefs = gql`
 
     type Query {
         userPage: Users
+        allPlayers: [Players]!
     }
 
     # type Mutation {

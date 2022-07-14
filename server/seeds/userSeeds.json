@@ -4,14 +4,41 @@
         "last_name": "Guerrero",
         "email": "daddyVladdy@baseball.com",
         "password": "Baseball",
-        "players": [
+        "savedPlayers": [
             {
                 "first_name": "Vladimir",
                 "last_name": "Guerrero Jr.",
                 "number": 27,
                 "position": ["1B", "DH"],
                 "handedness": "R/R",
-                "stats": [
+                "statId": [
+                    {
+                        "inning": 1,
+                        "order": 1,
+                        "balls": 3,
+                        "strikes": 2,
+                        "result": "Double",
+                        "rbi": 2,
+                        "run_scored": true,
+                        "stolen_base": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "first_name": "Vladimirrr",
+        "last_name": "Guerrero",
+        "email": "daddyVladdyt@baseball.com",
+        "password": "Baseball",
+        "savedPlayers": [
+            {
+                "first_name": "Vladimirrr",
+                "last_name": "Guerrero Jr.",
+                "number": 27,
+                "position": ["1B", "DH"],
+                "handedness": "R/R",
+                "statId": [
                     {
                         "inning": 1,
                         "order": 1,

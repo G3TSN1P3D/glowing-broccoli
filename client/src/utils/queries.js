@@ -11,7 +11,12 @@ export const QUERY_PROFILE =  gql`
         }
     }
     query allPlayers {
-
+        savedPlayers{
+            first_name
+            last_name
+            number
+            position
+        }
     }
 
 `

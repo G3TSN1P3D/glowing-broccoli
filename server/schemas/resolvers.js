@@ -1,4 +1,4 @@
-const { Users, Players, Stats } = require('../models')
+const { User, Player, Stat } = require('../models')
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
@@ -10,10 +10,13 @@ const resolvers = {
                 return userData
             }
             throw new AuthenticationError('User not found')
+        },
+        allPlayers: async () => {
+            const allUsers = await Player.find()
+            return allUsers
         }
-
-
     },
+
     // Mutation: {
 
     // }

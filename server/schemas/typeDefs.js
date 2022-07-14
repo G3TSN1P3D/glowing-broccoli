@@ -7,7 +7,7 @@ const typeDefs = gql`
         last_name: String!
         email: String!
         password: String!
-        player_id: [Players]
+        players: [Players]
     }
     type Players {
         _id: ID!

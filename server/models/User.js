@@ -24,7 +24,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    payerId: [playerSchema],
+    players: [playerSchema],
   },
   {
     toJSON: {

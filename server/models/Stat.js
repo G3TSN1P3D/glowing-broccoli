@@ -3,32 +3,25 @@ const { Schema } = require("mongoose");
 const statSchema = new Schema({
   // _id: ObjectId(),
   inning: {
-    type: Number,
-    required: true,
+    type: Number
   },
   order: {
-    type: Number,
-    required: true,
+    type: Number
   },
   balls: {
-    type: Number,
-    required: true,
+    type: Number
   },
   strikes: {
-    type: Number,
-    required: true,
+    type: Number
   },
   rbi: {
-    type: Number,
-    required: true,
+    type: Number
   },
   run: {
-    type: Boolean,
-    required: true,
+    type: Boolean
   },
   stolenBase: {
-    type: Number,
-    required: true,
+    type: Number
   },
 });
 

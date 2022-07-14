@@ -4,11 +4,11 @@ const statSchema = require("./Stat");
 
 const playerSchema = new Schema({
   // _id: ObjectId(),
-  firstName: {
+  first_name: {
     type: String,
     required: true,
   },
-  lastName: {
+  last_name: {
     type: String,
     required: true,
   },

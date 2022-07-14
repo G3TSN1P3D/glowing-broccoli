@@ -1,9 +1,8 @@
 import React from 'react'
 
-const navBar = () => {
-  return (
-    <div>navBar</div>
-  )
-}
+const navBar = styled.div`
+  
+`
+
 
 export default navBar

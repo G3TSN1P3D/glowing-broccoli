@@ -1,9 +1,9 @@
 import React from 'react'
 
-const playerCard = () => {
-  return (
-    <div>playerCard</div>
-  )
-}
+const Playercard = styled.article`
+
+
+`
+
 
 export default playerCard

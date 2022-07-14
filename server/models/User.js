@@ -5,12 +5,12 @@ const playerSchema = require("./Player");
 
 const userSchema = new Schema(
   {
-    _id: ObjectId(),
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
+    // _id: ObjectId(),
+    // first_name: {
+    //   type: String,
+    //   required: true,
+    // },
+    last_name: {
       type: String,
       required: true,
     },

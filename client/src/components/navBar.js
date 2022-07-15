@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-const navBar = styled.div`
-  
-`
+export default function navBar() {
+    return (
+        <nav className="navbar">
+            <div className="navbar-container">
+                
+            </div>
 
-
-export default navBar
+        </nav>
+  );
+}

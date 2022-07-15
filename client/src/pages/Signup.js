@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 // import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
@@ -85,18 +84,3 @@ export default function Signup(props) {
     )
 
 }
-=======
-import React from 'react'
-
-const Signup = () => {
-    return (
-        <main>
-            <div>
-                hello
-            </div>
-        </main>
-    )
-}
-
-export default Signup;
->>>>>>> 98d08fdc42bc1f3903d0ab9732d69436cc30b6b1

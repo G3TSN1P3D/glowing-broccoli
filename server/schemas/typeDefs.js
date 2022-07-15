@@ -1,45 +1,44 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    type Users {
-        _id: ID!
-        first_name: String!
-        last_name: String!
-        email: String!
-        password: String!
+    type User {
+        _id: ID
+        first_name: String
+        last_name: String
+        email: String
+        password: String
         saved_players: [ID]
     }
+
     type Player {
-        _id: ID!
+        _id: ID
         first_name: String
-        last_name: String!
+        last_name: String
         number: Int
         position: [String]
         handedness: String
-        user_id: ID!
-        stats: [Stats]
+        user_id: ID
+        stats: [Stat]
     }
-    type Stats {
+
+    type Stat {
         inning: Int
-        order: Int
-        balls: Int
-        strikes: Int
-        result: String
-        rbi: Int
-        run_scored: Int
-        stolen_base: Int
     }
+
     type Auth {
-        token: ID!
-        email: User
+        token: ID
+        user: User
     }
 
     type Query {
-        userPage: Users
-        allPlayers: [Players]!
+        userPage: User
     }
 
-    
+
+
+
+
+
 `
 
 module.exports = typeDefs

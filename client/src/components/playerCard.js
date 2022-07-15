@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const Playercard = styled.article`
+export default function Playercard() {
+
+}
 
 
-`
 
 
-export default playerCard

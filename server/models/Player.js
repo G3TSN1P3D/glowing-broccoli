@@ -13,18 +13,26 @@ const playerSchema = new Schema({
     required: true,
   },
   number: {
-    type: Number,
-    required: true,
+    type: Number
   },
   position: {
-    type: [String],
-    required: true,
+    type: [String]
   },
   handedness: {
-    type: String,
-    required: true,
+    type: String
   },
-  statId: [statSchema],
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  stats: [statSchema],
+},
+{
+  toJSON: {
+    virtuals: true,
+  }
 });
 
-module.exports = playerSchema;
+const Player = model("Player", playerSchema)
+
+module.exports = Player;

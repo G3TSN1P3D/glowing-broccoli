@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const playerCard = () => {
-  return (
-    <div>playerCard</div>
-  )
+export default function Playercard() {
+
 }
 
-export default playerCard
+
+
+

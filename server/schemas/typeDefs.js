@@ -39,10 +39,7 @@ const typeDefs = gql`
         allPlayers: [Players]!
     }
 
-    type Mutation {
-        login:(email: String!, password: String): Auth
-        addUser( email: String!, password: String!): Auth
-    }
+    
 `
 
 module.exports = typeDefs

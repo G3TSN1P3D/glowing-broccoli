@@ -1,8 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const playerSchema = require("./Player");
-
 const userSchema = new Schema(
   {
     // _id: ObjectId(),
@@ -24,7 +22,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    savedPlayers: [playerSchema],
+    saved_players: [{
+      type: Schema.Types.ObjectId, 
+      ref: "Player"
+    }],
   },
   {
     toJSON: {

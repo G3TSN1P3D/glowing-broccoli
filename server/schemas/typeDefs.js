@@ -7,15 +7,17 @@ const typeDefs = gql`
         last_name: String!
         email: String!
         password: String!
-        savedPlayers: [Players]
+        saved_players: [ID]
     }
     type Players {
+        _id: ID!
         first_name: String
         last_name: String!
-        number: Int!
-        position: [String]!
-        handedness: String!
-        statId: [Stats]!
+        number: Int
+        position: [String]
+        handedness: String
+        user_id: ID!
+        stats: [Stats]
     }
     type Stats {
         inning: Int
@@ -27,15 +29,20 @@ const typeDefs = gql`
         run_scored: Int
         stolen_base: Int
     }
+    type Auth {
+        token: ID!
+        email: User
+    }
 
     type Query {
         userPage: Users
         allPlayers: [Players]!
     }
 
-    # type Mutation {
-
-    # }
+    type Mutation {
+        login:(email: String!, password: String): Auth
+        addUser( email: String!, password: String!): Auth
+    }
 `
 
 module.exports = typeDefs

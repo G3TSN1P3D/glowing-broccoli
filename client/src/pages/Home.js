@@ -3,7 +3,7 @@ import React from 'react';
 
 // import { QUERY_PROFILE } from '../utils/queries'
 
-const Home = () => {
+export default function Home() {
     // const { loading, data } = useQuery(QUERY_PROFILE);
     // const profile = data?.profile || [];
 
@@ -17,4 +17,3 @@ const Home = () => {
     )
 }
 
-export default Home;

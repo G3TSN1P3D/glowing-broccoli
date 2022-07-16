@@ -20,7 +20,7 @@ const statSchema = new Schema({
   run: {
     type: Boolean
   },
-  stolenBase: {
+  stolen_base: {
     type: Number
   },
 });

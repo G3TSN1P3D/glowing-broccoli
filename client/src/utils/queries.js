@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 export const QUERY_PROFILE =  gql`
     query userPage {
         first_name
-        players{
+        player{
             first_name
             last_name
             number
@@ -11,12 +11,19 @@ export const QUERY_PROFILE =  gql`
         }
     }
     query allPlayers {
-        savedPlayers{
-            first_name
-            last_name
-            number
-            position
+        first_name
+        last_name
+        number
+        position
+        handedness
+        stats {
+            inning
+            order
+            balls
+            strikes
+            rbi
+            run
+            stolen_base
         }
     }
-
-`
+`;

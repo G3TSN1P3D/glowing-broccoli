@@ -13,8 +13,9 @@ const resolvers = {
             throw new AuthenticationError('User not found')
         },
         allPlayers: async () => {
-            const allUsers = await Player.find()
-            return allUsers
+            const players = await Player.find()
+            console.log(players)
+            return players
         }
     },
 
@@ -29,15 +30,38 @@ const resolvers = {
                 throw new AuthenticationError('Password incorrect')
             }
             const token = signToken(user)
-
+    
             return { token, user }
         },
+
         addUser: async(parent, args) => {
             const user = await User.create(args)
             const token = signToken(user)
             return { token, user }
-        }
+        },
 
+        newPlayer: async(parent, { input }, context) => {
+            if(context.user) {
+                const player = await Player.create({
+                    first_name: input.first_name,
+                    last_name: input.last_name,
+                    number: input.number,
+                    position: input.position,
+                    handedness: input.handedness,
+                    user_id: context.user._id
+                })
+                
+                const user = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {saved_players: player._id}}
+                )
+                console.log(user)
+
+                return player
+            }
+            throw new AuthenticationError('Must be logged in to create a player')
+        }
+    
     }
 }
 

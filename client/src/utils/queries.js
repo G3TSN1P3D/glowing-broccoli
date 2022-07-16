@@ -10,6 +10,9 @@ export const QUERY_PROFILE =  gql`
             position
         }
     }
+`
+ 
+export const QUERY_ALL_PLAYERS = gql`
     query allPlayers {
         first_name
         last_name

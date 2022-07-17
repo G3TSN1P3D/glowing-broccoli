@@ -2,16 +2,16 @@
 
 export default function Navbar() {
     return (
-        <header>
-            <nav>
-                <Nav content='Home'destination='/'></Nav>
-                <Nav content='Signin'destination='/signin'></Nav>
-                <Nav content='Signup'destination='/signup'></Nav>
-                <Nav content='Profile'destination='/profile'></Nav>
-                <Nav content='Stats'destination='/stats'></Nav>
-                <Nav content='StatsAll'destination='/statsall'></Nav>
-            </nav>
-        </header>
+        <nav>
+            <ul>
+                <li content='Home'destination='/'></li>
+                <li content='Signin'destination='/signin'></li>
+                <li content='Signup'destination='/signup'></li>
+                <li content='Profile'destination='/profile'></li>
+                <li content='Stats'destination='/stats'></li>
+                <li content='StatsAll'destination='/statsall'></li>
+            </ul>
+        </nav>
   );
 }
 

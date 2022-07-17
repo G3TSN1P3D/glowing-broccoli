@@ -40,6 +40,16 @@ const typeDefs = gql`
         handedness: String
     }
 
+    input NewStatInput {
+        inning: Int
+        order: Int
+        balls: Int
+        strikes: Int
+        rbi: Int
+        run: Boolean
+        stolen_base: Int
+    }
+
     type Auth {
         token: ID
         user: User
@@ -47,20 +57,16 @@ const typeDefs = gql`
 
     type Query {
         userPage: User
-        allPlayers: Player
+        allPlayers: [Player]
+        singlePlayer: Player
     }
 
     type Mutation {
         addUser(first_name: String, last_name: String, email: String, password: String): Auth
         login(email: String, password: String): Auth
-        newPlayer(input: NewPlayerInput): Player
+        newPlayer(playerId: ID, input: NewPlayerInput): Player
+        newStat(input: NewStatInput): Player
     }
-
-
-
-
-
-
 `
 
 module.exports = typeDefs;

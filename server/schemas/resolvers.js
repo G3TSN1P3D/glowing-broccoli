@@ -14,7 +14,10 @@ const resolvers = {
         },
         allPlayers: async () => {
             const players = await Player.find()
-            console.log(players)
+            return players
+        },
+        singlePlayer: async (parent, { playerId }) => {
+            const players = await Player.findOne({_id: playerId})
             return players
         }
     },
@@ -61,7 +64,31 @@ const resolvers = {
                 return player
             }
             throw new AuthenticationError('Must be logged in to create a player')
-        }
+        },
+
+        newStat: async(parent, { playerId, input }, context) => {
+                if(context.user) {
+                    console.log(input)
+                    const stat = Player.findOneAndUpdate(
+                        { _id: playerId},
+                        {
+                            $addToSet: {
+                                stats: {
+                                    inning: input.inning,
+                                    order: input.order,
+                                    balls: input.balls,
+                                    strikes: input.strikes,
+                                    rbi: input.rbi,
+                                    run: input.run,
+                                    stolen_base: input.stolen_base
+                                }
+                            }
+                        }
+                    )
+                    console.log(stat)
+                    return stat
+                }
+            }
     
     }
 }

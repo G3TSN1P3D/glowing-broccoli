@@ -18,14 +18,19 @@ export default function Navigation() {
         if (currentPage === 'Profile') {
             return <Profile />
         }
-        if (currentPage === 'Signin')
+        if (currentPage === 'Signin') {
             return <Signin />
-        if (currentPage === 'Signup')
+        }
+        if (currentPage === 'Signup') {
             return <Signup />
-        if (currentPage === 'Stats')
+        }
+        if (currentPage === 'Stats') {
             return <Stats />
-        if (currentPage === 'Statsall')
+        }
+        if (currentPage === 'Statsall'){
             return <Statsall />
+        }
+        return <Home />
 
     }
 

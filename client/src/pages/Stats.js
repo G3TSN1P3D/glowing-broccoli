@@ -5,7 +5,7 @@ const Stats = () => {
     return (
         <main>
             <div>
-                hello
+                Stats
             </div>
         </main>
     )

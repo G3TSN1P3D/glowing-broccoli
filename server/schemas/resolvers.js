@@ -34,11 +34,29 @@ const resolvers = {
       return { token, user };
     },
 
+<<<<<<< HEAD
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
     },
+=======
+    Mutation: {
+        login: async(parent, {email, password}) => {
+            const user = await User.findOne({email: email})
+            
+            if (!user) {
+                throw new AuthenticationError('Email not found')
+            }
+            const correctPassword = await user.isCorrectPassword(password)
+            if (!correctPassword) {
+                throw new AuthenticationError('Password incorrect')
+            }
+            const token = signToken(user)
+    
+            return { token, user }
+        },
+>>>>>>> 0b27da83720e9caabe86727c52a8b282cb4ea2a7
 
     newPlayer: async (parent, { input }, context) => {
       if (context.user) {

@@ -10,18 +10,36 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        {/* <Header /> */}
-        <div className="container">
-          <Home />
-        </div>
-        {/* <Footer /> */}
-      </div>
-    </ApolloProvider>
-  );
-}
+  function App() {
+    return (
+      <Router>
+        <Nav />
+          <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/profile" element={<Profile />}/>
+            <Route path="/signin" element={<Signin />}/>
+            <Route path="/signup" element={<Signup />}/>
+            <Route path="/stats" element={<Stats />}/>
+            <Route path="/allstats" element={<StatsAll />}/>
+          </Routes>
+      </Router>
+    )
+  }
 
-export default App;
+
+
+// function App() {
+//     return (
+//     <ApolloProvider client={client}>
+//       <div className="flex-column justify-flex-start min-100-vh">
+//         {/* <Header /> */}
+//         <div className="container">
+//           <Home />
+//         </div>
+//         {/* <Footer /> */}
+//       </div>
+//     </ApolloProvider>
+//   );
+// }
+
+// export default App;

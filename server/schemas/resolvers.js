@@ -3,60 +3,30 @@ const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
 
 const resolvers = {
-  Query: {
-    // Should show the User info and all players for the user
-    userPage: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id });
-        return userData;
-      }
-      throw new AuthenticationError("User not found");
-    },
-    allPlayers: async () => {
-      const players = await Player.find();
-      console.log(players);
-      return players;
-    },
-  },
-
-  Mutation: {
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-      if (!user) {
-        throw new AuthenticationError("Email not found");
-      }
-      const correctPassword = await user.isCorrectPassword(password);
-      if (!correctPassword) {
-        throw new AuthenticationError("Password incorrect");
-      }
-      const token = signToken(user);
-
-      return { token, user };
+    Query: {
+        // Should show the User info and all players for the user
+        userPage: async (parent, args, context) => {
+            if(context.user) {
+                const userData = await User.findOne({_id: context.user._id})
+                return userData
+            }
+            throw new AuthenticationError('User not found')
+        },
+        allPlayers: async () => {
+            const players = await Player.find()
+            return players
+        },
+        singlePlayer: async (parent, { playerId }) => {
+            const players = await Player.findOne({_id: playerId})
+            return players
+        }
     },
 
-<<<<<<< HEAD
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
     },
-=======
-    Mutation: {
-        login: async(parent, {email, password}) => {
-            const user = await User.findOne({email: email})
-            
-            if (!user) {
-                throw new AuthenticationError('Email not found')
-            }
-            const correctPassword = await user.isCorrectPassword(password)
-            if (!correctPassword) {
-                throw new AuthenticationError('Password incorrect')
-            }
-            const token = signToken(user)
-    
-            return { token, user }
-        },
->>>>>>> 0b27da83720e9caabe86727c52a8b282cb4ea2a7
 
     newPlayer: async (parent, { input }, context) => {
       if (context.user) {
@@ -75,31 +45,38 @@ const resolvers = {
         );
         console.log(user);
 
-        return player;
-      }
-      throw new AuthenticationError("Must be logged in to create a player");
-    },
-    newStat: async (parent, { input }, context) => {
-      if (context.player) {
-        const stat = await Stat.create({
-          inning: input.inning,
-          order: input.order,
-          balls: input.balls,
-          strikes: input.strikes,
-          rbi: input.rbi,
-          run: input.run,
-          stolen_base: input.stolen_base,
-        });
-        const player = await Player.findOneAndUpdate(
-          { _id: context.player._id },
-          { $push: { stats: stat._id } }
-        );
-        console.log(stat);
+                return player
+            }
+            throw new AuthenticationError('Must be logged in to create a player')
+        },
 
-        return stat;
-      }
-    },
-  },
-};
+        newStat: async(parent, { playerId, input }, context) => {
+                if(context.user) {
+                    console.log(input)
+                    const stat = Player.findOneAndUpdate(
+                        { _id: playerId},
+                        {
+                            $addToSet: {
+                                stats: {
+                                    inning: input.inning,
+                                    order: input.order,
+                                    balls: input.balls,
+                                    strikes: input.strikes,
+                                    rbi: input.rbi,
+                                    run: input.run,
+                                    stolen_base: input.stolen_base
+                                }
+                            }
+                        }
+                    )
+                    console.log(stat)
+                    return stat
+                }
+            }
+    
+    }
+
+
+
 
 module.exports = resolvers;

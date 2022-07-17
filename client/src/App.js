@@ -1,10 +1,12 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/header';
+import Footer from './components/footer';
 import Navbar from './components/navBar';
+
+
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
@@ -13,7 +15,7 @@ const client = new ApolloClient({
   function App() {
     return (
       <Router>
-        <Nav />
+        <Navbar />
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/profile" element={<Profile />}/>
@@ -42,4 +44,4 @@ const client = new ApolloClient({
 //   );
 // }
 
-// export default App;
+export default App;

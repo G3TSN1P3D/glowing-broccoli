@@ -5,10 +5,11 @@ export default function Navbar() {
         <header>
             <nav>
                 <Nav content='Home'destination='/'></Nav>
-                <Nav content='Signup/in'destination='/'></Nav>
-                <Nav content='NewGame'destination='/'></Nav>
-                <Nav content='Player'destination='/'></Nav>
-                <Nav content='Profile'destination='/'></Nav>
+                <Nav content='Signin'destination='/signin'></Nav>
+                <Nav content='Signup'destination='/signup'></Nav>
+                <Nav content='Profile'destination='/profile'></Nav>
+                <Nav content='Stats'destination='/stats'></Nav>
+                <Nav content='StatsAll'destination='/statsall'></Nav>
             </nav>
         </header>
   );

@@ -20,7 +20,7 @@ const client = new ApolloClient({
             <Route path="/signin" element={<Signin />}/>
             <Route path="/signup" element={<Signup />}/>
             <Route path="/stats" element={<Stats />}/>
-            <Route path="/allstats" element={<StatsAll />}/>
+            <Route path="/statsall" element={<StatsAll />}/>
           </Routes>
       </Router>
     )

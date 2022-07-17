@@ -2,9 +2,9 @@ import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import Home from './pages/Home';
-// import Header from './components/Header';
-// import Footer from './components/Footer';
-
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Navbar from './components/navBar';
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
@@ -23,7 +23,7 @@ const client = new ApolloClient({
             <Route path="/statsall" element={<StatsAll />}/>
           </Routes>
       </Router>
-    )
+    ) 
   }
 
 

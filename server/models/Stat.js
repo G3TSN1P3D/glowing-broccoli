@@ -23,6 +23,9 @@ const statSchema = new Schema({
   stolen_base: {
     type: Number
   },
+  result: {
+    type: String
+  }
 });
 
 module.exports = statSchema;

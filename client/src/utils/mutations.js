@@ -60,7 +60,8 @@ export const NEW_STAT = gql`
         $strikes: Int,
         $rbi: Int,
         $run: Boolean,
-        $stolen_base: Int) {
+        $stolen_base: Int,
+        $result: String) {
             newStat(
                 playerId: $playerId,
                 input: {
@@ -71,6 +72,7 @@ export const NEW_STAT = gql`
                     rbi: $rbi,
                     run: $run,
                     stolen_base: $stolen_base
+                    result: $result
                 }
             ) {
                 player {
@@ -84,6 +86,7 @@ export const NEW_STAT = gql`
                         rbi
                         run
                         stolen_base
+                        result
                     }
                 }
             }

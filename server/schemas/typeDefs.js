@@ -29,6 +29,7 @@ const typeDefs = gql`
         rbi: Int
         run: Boolean
         stolen_base: Int
+        result: String
     }
 
     input NewPlayerInput {
@@ -39,17 +40,6 @@ const typeDefs = gql`
         position: [String]
         handedness: String
     }
-    input NewStatInput {
-        _id: ID
-        inning: Int
-        order: Int
-        balls: Int
-        strikes: Int
-        rbi: Int
-        run: Boolean
-        stolen_base: Int
-
-    }
 
     input NewStatInput {
         inning: Int
@@ -59,6 +49,7 @@ const typeDefs = gql`
         rbi: Int
         run: Boolean
         stolen_base: Int
+        result: String
     }
 
     type Auth {
@@ -67,15 +58,15 @@ const typeDefs = gql`
     }
 
     type Query {
-        userPage: User
-        allPlayers: [Player]
+        userPage: User,
+        allPlayers: [Player],
         singlePlayer: Player
     }
 
     type Mutation {
-        addUser(first_name: String, last_name: String, email: String, password: String): Auth
-        login(email: String, password: String): Auth
-        newPlayer(playerId: ID, input: NewPlayerInput): Player
+        addUser(first_name: String, last_name: String, email: String, password: String): Auth,
+        login(email: String, password: String): Auth,
+        newPlayer(playerId: ID, input: NewPlayerInput): Player,
         newStat(input: NewStatInput): Player
     }
 `

@@ -22,34 +22,34 @@ const resolvers = {
         }
     },
 
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-      return { token, user };
-    },
-
-    newPlayer: async (parent, { input }, context) => {
-      if (context.user) {
-        const player = await Player.create({
-          first_name: input.first_name,
-          last_name: input.last_name,
-          number: input.number,
-          position: input.position,
-          handedness: input.handedness,
-          user_id: context.user._id,
-        });
-
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { saved_players: player._id } }
-        );
-        console.log(user);
-
-                return player
-            }
-            throw new AuthenticationError('Must be logged in to create a player')
+    Mutation: {
+        addUser: async (parent, args) => {
+        const user = await User.create(args);
+        const token = signToken(user);
+        return { token, user };
         },
 
+        newPlayer: async (parent, { input }, context) => {
+        if (context.user) {
+            const player = await Player.create({
+            first_name: input.first_name,
+            last_name: input.last_name,
+            number: input.number,
+            position: input.position,
+            handedness: input.handedness,
+            user_id: context.user._id,
+            });
+
+            const user = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $push: { saved_players: player._id } }
+            );
+            console.log(user);
+
+                    return player
+                }
+                throw new AuthenticationError('Must be logged in to create a player')
+            },
         newStat: async(parent, { playerId, input }, context) => {
                 if(context.user) {
                     console.log(input)
@@ -64,7 +64,8 @@ const resolvers = {
                                     strikes: input.strikes,
                                     rbi: input.rbi,
                                     run: input.run,
-                                    stolen_base: input.stolen_base
+                                    stolen_base: input.stolen_base,
+                                    result: input.result
                                 }
                             }
                         }
@@ -73,7 +74,7 @@ const resolvers = {
                     return stat
                 }
             }
-    
+        }
     }
 
 

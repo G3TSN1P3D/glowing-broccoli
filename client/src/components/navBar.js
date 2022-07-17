@@ -1,16 +1,33 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
+import Auth from '../utils/auth';
 
-export default function Navbar({ currentPage, changePage }) {
+export default function Navbar() {
+    
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+      };
+
     return (
-        <nav>
-            <ul>
-                <li onClick={() => changePage('Home')}>Home</li>
-                <li onClick={() => changePage('Signin')}>Signin</li>
-                <li onClick={() => changePage('Signup')}>Signup</li>
-                <li onClick={() => changePage('Profile')}>Profile</li>
-                <li onClick={() => changePage('Stats')}> Player Stats</li>
-                <li onClick={() => changePage('Statsall')}>All Player Stats</li>
+        <nav className='navbar'>
+            <ul className='nav-links'>
+                <Link to="/">
+                    <li>Home</li>
+                </Link>
+                <Link to="/login">  
+                    <li>Log In</li> 
+                </Link>
+                <Link to="/signup">  
+                    <li>Signup</li>
+                </Link>
+                <Link to="/profile">  
+                    <li>Profile</li>
+                </Link>
+                <Link to="/stats">  
+                    <li>All Player Stats</li>
+                </Link>
             </ul>
         </nav>
   );

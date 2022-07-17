@@ -4,7 +4,7 @@ const Statsall = () => {
     return (
         <main>
             <div>
-                hello
+                All Stats
             </div>
         </main>
     )

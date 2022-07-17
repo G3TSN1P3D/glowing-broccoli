@@ -15,7 +15,7 @@ export default function Profile() {
     return (
         <main>
             <div>
-                hello
+                Profile
             </div>
         </main>
     )

@@ -1,7 +1,9 @@
+// DEPRECATED
+
 import React, { useState } from 'react';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile'
-import Signin from '../pages/Signin'
+import Signin from '../pages/SignIn'
 import Signup from '../pages/Signup'
 import Stats from '../pages/Stats'
 import Statsall from '../pages/Statsall'

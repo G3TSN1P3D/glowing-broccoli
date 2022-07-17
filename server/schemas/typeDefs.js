@@ -39,6 +39,17 @@ const typeDefs = gql`
         position: [String]
         handedness: String
     }
+    input NewStatInput {
+        _id: ID
+        inning: Int
+        order: Int
+        balls: Int
+        strikes: Int
+        rbi: Int
+        run: Boolean
+        stolen_base: Int
+
+    }
 
     input NewStatInput {
         inning: Int

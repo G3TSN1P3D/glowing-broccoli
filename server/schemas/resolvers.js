@@ -32,7 +32,7 @@ const resolvers = {
     },
 
     newPlayer: async (parent, { input }, context) => {
-      console.log(context)
+      console.log(input)
       if (context.user) {
         const player = await Player.create({
           first_name: input.first_name,

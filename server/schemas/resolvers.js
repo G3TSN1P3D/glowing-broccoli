@@ -40,14 +40,14 @@ const resolvers = {
           number: input.number,
           position: input.position,
           handedness: input.handedness,
-          user_id: context.user._id,
+          // user_id: context.user._id,
         });
 
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { saved_players: player._id } }
-        );
-        console.log(user);
+        // const user = await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $push: { saved_players: player._id } }
+        // );
+        // console.log(user);
 
         return player;
       }

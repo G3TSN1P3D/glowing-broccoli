@@ -58,7 +58,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    userPage: User
+    user: User
     allPlayers: [Player]
     singlePlayer: Player
   }

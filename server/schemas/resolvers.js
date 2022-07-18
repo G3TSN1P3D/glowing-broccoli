@@ -5,9 +5,11 @@ const { AuthenticationError } = require("apollo-server-express");
 const resolvers = {
   Query: {
     // Should show the User info and all players for the user
-    userPage: async (parent, args, context) => {
+    user: async (parent, args, context) => {
+      console.log(context)
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id });
+        const userData = await User.findById(context.user._id);
+        console.log(userData)
         return userData;
       }
       throw new AuthenticationError("User not found");
@@ -30,6 +32,7 @@ const resolvers = {
     },
 
     newPlayer: async (parent, { input }, context) => {
+      console.log(context)
       if (context.user) {
         const player = await Player.create({
           first_name: input.first_name,

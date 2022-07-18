@@ -41,13 +41,11 @@ export const NEW_PLAYER = gql`
                         position: $position,
                         handedness: $handedness}
                 ) {
-                    player {
-                        first_name
-                        last_name
-                        number
-                        position
-                        handedness
-                    }
+                    first_name
+                    last_name
+                    number
+                    position
+                    handedness
                 }
             }
 

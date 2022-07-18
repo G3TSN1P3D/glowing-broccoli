@@ -81,6 +81,17 @@ export default function Profile() {
                 You need to be logged in to see this. Use the navigation links above to
                 sign up or log in!
                 </h4>
+
+            </div>
+          );
+    }
+    console.log(data)
+    const user = data.user
+
+    return (
+        <main>
+            <div>
+                <h2>Welcome, {user.first_name}!</h2>
                 <button onClick={() => openModal()}>
                     Create a new player
                 </button>
@@ -143,17 +154,6 @@ export default function Profile() {
                         <button onClick={() => openModal()}>Close</button>
                     </div>
                 </Modal>
-
-            </div>
-          );
-    }
-    console.log(data)
-    const user = data.user
-
-    return (
-        <main>
-            <div>
-                <h2>Welcome, {user.first_name}!</h2>
             </div>
 
         </main>

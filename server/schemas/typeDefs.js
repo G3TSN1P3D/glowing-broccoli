@@ -71,9 +71,7 @@ const typeDefs = gql`
       password: String
     ): Auth
     login(email: String, password: String): Auth
-    newPlayer(
-      # playerId: ID,
-      input: NewPlayerInput
+    newPlayer(playerId: ID, input: NewPlayerInput
     ): Player
     removePlayer(playerId: ID!): Player
     newStat(playerId: ID, input: NewStatInput): Player

@@ -5,20 +5,13 @@ import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations';
 
 export default function Signup(props) {
-    const [formState, setFormState] = useState({ email: '', password: '', first_name: '', last_name: '' })
-    const [loginUser] = useMutation(LOGIN_USER);
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        const mutationResponse = await loginUser({
-            variables: {
-                email: formState.email,
-                password: formState.password
-            }
-        })
-        const token = mutationResponse.data.loginUser.token;
-        Auth.login(token);
-    }
+    const [formState, setFormState] = useState({ 
+        email: '', 
+        password: '' 
+    })
+
+    const [login, { error, data }] = useMutation(LOGIN_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -27,6 +20,29 @@ export default function Signup(props) {
             [name]: value
         });
     };
+
+    const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+      
+      console.log(data)
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
+
 
     return (
         <div>
@@ -41,6 +57,7 @@ export default function Signup(props) {
                         name='email'
                         type='email'
                         id='email'
+                        value={formState.email}
                         onChange={handleChange}
                     />
                 </div>
@@ -51,6 +68,7 @@ export default function Signup(props) {
                         name='password'
                         type='password'
                         id='password'
+                        value={formState.password}
                         onChange={handleChange}
                     />
                 </div>

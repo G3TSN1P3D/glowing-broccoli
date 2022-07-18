@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
 export default function Signup(props) {
     const [formState, setFormState] = useState({ 
-        email: '', 
-        password: '', 
         first_name: '', 
-        last_name: '' 
+        last_name: '',
+        email: '', 
+        password: ''
     })
-    const [addUser] = useMutation(ADD_USER);
+    const [addUser, { error, data }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+    
         setFormState({
-            ...formState,
-            [name]: value
+          ...formState,
+          [name]: value,
         });
-    };
+      };
 
-    const handleFormSubmit = async (event) => {
+      const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const mutationResponse = await addUser({
-            variables: {
-                first_name: formState.first_name,
-                last_name: formState.last_name,
-                email: formState.email,
-                password: formState.password
-            }
-        })
-        const token = mutationResponse.data.addUser.token;
-        Auth.login(token);
-    }
+        console.log(formState);
+    
+        try {
+          const { data } = await addUser({
+            variables: { ...formState },
+          });
+    
+          Auth.login(data.addUser.token);
+        } catch (e) {
+          console.error(e);
+        }
+      };
 
 
     return (
         <div>
-            <Link to="/login">Go to Login</Link>
-
             <h2>Signup</h2>
             <form onSubmit={handleFormSubmit}>
                 <div>
@@ -86,7 +86,8 @@ export default function Signup(props) {
                     <button type='submit'>Submit</button>
                 </div>
             </form>
+            <Link to="/login">Already have an account? Login!</Link>
         </div>
     )
-
+    
 }

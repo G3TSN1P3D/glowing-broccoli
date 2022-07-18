@@ -10,6 +10,7 @@ import Statsall from '../pages/Statsall'
 import Footer from './Footer'
 import Navbar from './navBar';
 
+
 export default function Navigation() {
     const [currentPage, setCurrentPage] = useState('Home');
 

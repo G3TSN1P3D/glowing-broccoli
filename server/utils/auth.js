@@ -1,39 +1,35 @@
 const jwt = require("jsonwebtoken");
 
 // set token secret and expiration date
-const secret = "th3r3sn0cry1n1nbaseball_ify0ubuild1tth3ywillcome_1tc0uldhapp3n";
+const secret = "th3r3sn0cry1n1nbaseball";
 const expiration = "2h";
 
 module.exports = {
-  // function for our authenticated routes
-  authMiddleware: function (req, res, next) {
-    // allows token to be sent via  req.query or headers
-    let token = req.query.token || req.headers.authorization;
+  authMiddleware: function ({ req }) {
+    let token = req.body.token || req.query.token || req.headers.authorization;
 
-    // ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
-      token = token.split(" ").pop().trim();
+      token = token.split(' ').pop().trim();
     }
 
     if (!token) {
-      return res.status(400).json({ message: "You have no token!" });
+      return req;
     }
 
-    // verify token and get user data out of it
     try {
+      
+      console.log('---Token Data-----')
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      console.log(data)
       req.user = data;
     } catch {
-      console.log("Invalid token");
-      return res.status(400).json({ message: "invalid token!" });
+      console.log('Invalid token');
     }
 
-    // send to next endpoint
-    next();
+    return req;
   },
-  signToken: function ({ email, _id }) {
+  signToken: function ({ email,  _id }) {
     const payload = { email, _id };
-
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };

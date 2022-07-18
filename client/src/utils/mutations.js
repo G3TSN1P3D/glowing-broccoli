@@ -28,26 +28,24 @@ export const ADD_USER = gql`
 
 export const NEW_PLAYER = gql`
     mutation newPlayer(
-            $firstName: String, 
-            $lastName: String, 
+            $first_name: String, 
+            $last_name: String, 
             $number: Int, 
             $position: [String], 
             $handedness: String) {
                 newPlayer(
                     input: {
-                        first_name: $firstName,
-                        last_name: $lastName,
+                        first_name: $first_name,
+                        last_name: $last_name,
                         number: $number,
                         position: $position,
                         handedness: $handedness}
                 ) {
-                    player {
-                        first_name
-                        last_name
-                        number
-                        position
-                        handedness
-                    }
+                    first_name
+                    last_name
+                    number
+                    position
+                    handedness
                 }
             }
 

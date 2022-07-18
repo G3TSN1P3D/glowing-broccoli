@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_PROFILE =  gql`
-    query userPage($_id: ID!) {
-        userPage(_id: $_id) {
+    {
+        user{
             _id
             first_name
             last_name

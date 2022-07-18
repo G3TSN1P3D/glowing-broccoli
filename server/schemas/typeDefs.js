@@ -73,7 +73,8 @@ const typeDefs = gql`
     login(email: String, password: String): Auth
     newPlayer(playerId: ID, input: NewPlayerInput): Player
     newStat(input: NewStatInput): Player
-    editStat(statId: ID, input: NewStatInput): Stat
+    editStat(playerId: ID!, statId: ID, input: NewStatInput): Player
+    removeStat(playerId: ID!, statId: ID): Player
   }
 `;
 

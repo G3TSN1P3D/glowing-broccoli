@@ -7,15 +7,15 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
-import Login from './pages/SignIn';
+import Login from './pages/Signin';
 import Profile from './pages/Profile';
 import StatsAll from './pages/StatsAll';
 import Stats from './pages/Stats'
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from './components/navBar';
+import Footer from './components/footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

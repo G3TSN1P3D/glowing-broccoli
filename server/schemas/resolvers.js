@@ -53,7 +53,7 @@ const resolvers = {
     newStat: async (parent, { playerId, input }, context) => {
       if (context.user) {
         console.log(input);
-        const stat = Player.findOneAndUpdate(
+        const stat = await Player.findOneAndUpdate(
           { _id: playerId },
           {
             $addToSet: {
@@ -73,15 +73,50 @@ const resolvers = {
         console.log(stat);
         return stat;
       }
+      throw new AuthenticationError("Must be logged in to add a stat");
     },
-    editStat: async (parent, { statId, input }, context) => {
-        if (context.user) {
-            console.log(input);
-            const stat = Stat.findOneAndUpdate(
-                { _id: statId },
-                {  }
-            )
-        }
+    editStat: async (parent, { playerId, statId, input }, context) => {
+      if (context.user) {
+        console.log(input);
+        const stat = await Player.findOneAndUpdate(
+          { _id: playerId },
+          {
+            where: {
+              _id: statId,
+              stats: {
+                inning: input.inning,
+                order: input.order,
+                balls: input.balls,
+                strikes: input.strikes,
+                rbi: input.rbi,
+                run: input.run,
+                stolen_base: input.stolen_base,
+                result: input.result,
+              },
+            },
+          },
+          { new: true }
+        );
+        console.log(stat);
+        return stat;
+      }
+      throw new AuthenticationError("Must be logged in to edit a stat");
+    },
+    removeStat: async (parent, { playerId, statId }, context) => {
+      if (context.user) {
+        return Player.findOneAndUpdate(
+          { _id: playerId },
+          {
+            $pull: {
+              stats: {
+                _id: statId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("Must be logged in to remove a stat")
     },
   },
 };

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations';
+import { Button, Card, Form, Row } from 'react-bootstrap';
 
 export default function Signup(props) {
 

@@ -33,7 +33,7 @@ const typeDefs = gql`
   }
 
   input NewPlayerInput {
-    _id: ID
+    # _id: ID
     first_name: String
     last_name: String
     number: Int
@@ -71,9 +71,12 @@ const typeDefs = gql`
       password: String
     ): Auth
     login(email: String, password: String): Auth
-    newPlayer(playerId: ID, input: NewPlayerInput): Player
+    newPlayer(
+      # playerId: ID,
+      input: NewPlayerInput
+    ): Player
     removePlayer(playerId: ID!): Player
-    newStat(input: NewStatInput): Player
+    newStat(playerId: ID, input: NewStatInput): Player
     editStat(playerId: ID!, statId: ID, input: NewStatInput): Player
     removeStat(playerId: ID!, statId: ID): Player
   }

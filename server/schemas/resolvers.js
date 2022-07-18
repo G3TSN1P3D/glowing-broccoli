@@ -50,6 +50,18 @@ const resolvers = {
       }
       throw new AuthenticationError("Must be logged in to create a player");
     },
+    removePlayer: async (parent, { playerId }, context) => {
+      if (context.user) {
+        const player = await Player.findOneAndDelete({ _id: playerId });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { player: player._id } }
+        );
+        return player;
+      }
+      throw new AuthenticationError("Must be logged in!")
+    },
     newStat: async (parent, { playerId, input }, context) => {
       if (context.user) {
         console.log(input);
@@ -116,7 +128,7 @@ const resolvers = {
           { new: true }
         );
       }
-      throw new AuthenticationError("Must be logged in to remove a stat")
+      throw new AuthenticationError("Must be logged in to remove a stat");
     },
   },
 };

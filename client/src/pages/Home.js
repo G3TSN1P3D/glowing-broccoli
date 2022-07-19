@@ -6,6 +6,9 @@ export default function Home() {
   const { loading, data: profile = [] } = useQuery(QUERY_PROFILE);
 
   return (
+    // Drew wants a title in jumbo
+    // description of the site and buttons for 
+
     <div className="jumbotron">
       <h1 className="display-4 d-flex"></h1>
       <p className="lead d-flex justify-content-center">

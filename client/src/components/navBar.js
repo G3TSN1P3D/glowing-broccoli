@@ -13,35 +13,35 @@ export default function Navbar() {
       };
 
     return (
-        <nav className="navbar d-flex flex-row justify-content-end" style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row   ">
+        <nav className="navbar d-flex flex-row justify-content-end " style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row  ">
                 <Link to="/">
-                    <li className="p-2">Home</li>
+                <button type="button" class="btn btn-primary btn-sm m-1">Home</button>
                 </Link>
                 {!data ?  
                 <>
                 <Link to="/login">  
-                    <li className="p-2">Log In</li> 
+                <button type="button" class="btn btn-primary btn-sm m-1">Login</button>
                 </Link>
                 <Link to="/signup">  
-                    <li className="p-2">Signup</li>
+                <button type="button" class="btn btn-primary btn-sm m-1">Sign Up</button>
                 </Link>
                 </>
                 
                     :
                 <>
                 <Link to="/profile">  
-                    <li className="p-2">Profile</li>
+                <button type="button" class="btn btn-primary btn-sm m-1">Profile</button>
                 </Link>
                 <Link to="/record">
-                    <li className="p-2">Record Game</li>
+                <button type="button" class="btn btn-primary btn-sm m-1">Record Game</button>
                 </Link>
                 </>
                 }
                
                 
                 <Link to="/stats">  
-                    <li className="p-2">All Player Stats</li>
+                <button type="button" class="btn btn-primary btn-sm m-1">All Player Stats</button>
                 </Link>
             </ul>
         </nav>

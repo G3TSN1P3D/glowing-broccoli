@@ -146,7 +146,7 @@ if (loading) {
               placeholder="Enter position"
             />
           </Form.Group>
-                    <Form.Group className="mb-3">
+          <Form.Group className="mb-3">
           <Form.Label>Handedness</Form.Label>
             <Form.Control
               onChange={handleChange}

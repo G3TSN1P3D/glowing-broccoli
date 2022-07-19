@@ -3,11 +3,11 @@
 export default function Footer() {
   return (
   
-  <footer className="bg-light text-center text-lg-start">
-  <div className="container p-4">
+  <footer className="bg-light text-center text-lg-start d-flex flex-column min-vh-100">
+  <div className="container p-5 fixed-bottom">
     <div className="row">
       <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
-        <h5 className="text-uppercase">Kyle Gorski</h5>
+        <h5>Kyle Gorski</h5>
 
         <p>
           Git hub info goes here my guy
@@ -15,14 +15,14 @@ export default function Footer() {
       </div>
 
       <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
-        <h5 className="text-uppercase">Drew Kempen</h5>
+        <h5>Drew Kempen</h5>
 
         <p>
           Git hub info goes here my guy 
         </p>
       </div>
       <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
-        <h5 className="text-uppercase">Salvador Flores</h5>
+        <h5>Salvador Flores</h5>
 
         <p>
           Git hub info goes here my guy
@@ -31,7 +31,7 @@ export default function Footer() {
     </div>
   </div>
 
-  <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+  <div className="text-center p-3 fixed-bottom" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
     © 2020 Copyright:
     
   </div>

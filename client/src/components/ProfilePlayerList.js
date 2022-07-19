@@ -1,10 +1,11 @@
 import React from 'react';
 
-export default function PlayerList({players}) {
-    if (!players) {
+export default function ProfilePlayerList({players}) {
+    console.log(players)
+    if (!players.userPlayers.length) {
         return <h4>No players yet</h4>
     }
-    const list = players.allPlayers.map((player) => {
+    const list = players.userPlayers.map((player) => {
         return (
             <li key={player._id} className='player-card'>
                 <h3>

@@ -100,62 +100,16 @@ export default function Profile() {
                 </button>
 
                 <Modal
+
+
+
+
+
                     isOpen={open}
                     onRequestClose={() => openModal()}
                     contentLabel="New Player"
                 >
-                    <h1>Create New Player</h1>
-                    <form onSubmit={handleFormSubmit}>
-                        <div>
-                            <label htmlFor='first_name'>First Name:</label>
-                            <input
-                                placeholder='First'
-                                name='first_name'
-                                type='first_name'
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='last_name'>Last Name:</label>
-                            <input
-                                placeholder='Last'
-                                name='last_name'
-                                type='last_name'
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='number'>Number:</label>
-                            <input
-                                placeholder='Number'
-                                name='number'
-                                type='number'
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='position'>Position:</label>
-                            <input
-                                placeholder='Position'
-                                name='position'
-                                type='position'
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='handedness'>Handedness:</label>
-                            <input
-                                placeholder='Handedness'
-                                name='handedness'
-                                type='handedness'
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </form>
-                    <div>
-                        <button type='submit' onClick={handleFormSubmit}>Submit</button>
-                        <button onClick={() => openModal()}>Close</button>
-                    </div>
+
                 </Modal>
             </div>
 

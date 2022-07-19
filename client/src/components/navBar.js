@@ -11,7 +11,7 @@ export default function Navbar() {
       };
 
     return (
-        <nav className="navbar   d-flex flex-row justify-content-end" style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
+        <nav className="navbar d-flex flex-row justify-content-end" style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row   ">
                 <Link to="/">
                     <li class="p-2">Home</li>

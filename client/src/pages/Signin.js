@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
@@ -32,17 +32,23 @@ export default function Signup(props) {
       
       console.log(data)
 
-      Auth.login(data.login.token);
+  const token = localStorage.getItem('id_token');
+  Auth.login(token);
     } catch (e) {
       console.error(e);
     }
 
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
-    });
+
   };
+ // clear form values on component unmount rather than click handler
+  useEffect(() => {
+    return () => {
+        setFormState({
+            email: '',
+            password: '',
+          });
+    }
+  },[formState]) 
 
 
     return (
@@ -107,8 +113,7 @@ export default function Signup(props) {
             </Button>
           </Row>
         </Form>
-
-      </Card>
+        </Card>
 
 
     )

@@ -2,17 +2,29 @@ import React from 'react';
 
 export default function PlayerList({players}) {
     if (!players) {
-        return <h4>No players yet</h4>
+        return <h3>Be sure to add players to your tracker!</h3>
     }
+
+    if (players == []) {
+        return <h3>No Players available!</h3>
+    }
+
     const list = players.allPlayers.map((player) => {
         return (
-            <li key={player._id} className='player-card'>
-                <h3>
-                    {player.first_name} {player.last_name} {player.number} {player.position.map((position) => <p key={player._id + position}>{position}</p>)}
-                </h3>
-            </li>
-        )
-})
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{player.first_name}</h5>
+            <p class="card-text">{player.last_name}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{player.number}</li>
+            <li class="list-group-item">{player.position.map((position) => <p key={player._id + position}>{position}</p>)}</li>
+            <li class="list-group-item">{player.handedness}</li>
+          </ul>
+        </div>
+    )})
+
+        
 
     return (
         <div>

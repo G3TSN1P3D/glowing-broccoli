@@ -4,7 +4,7 @@ export default function Footer() {
   return (
   
   <footer className="bg-light text-center text-lg-start d-flex flex-column min-vh-100">
-  <div className="container p-5 fixed-bottom">
+  <div className="container p-5 static-bottom">
     <div className="row">
       <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
         <h5>Kyle Gorski</h5>

@@ -48,7 +48,7 @@ export default function Signup(props) {
             password: '',
           });
     }
-  },[formState]) 
+  },[]) 
 
 
     return (

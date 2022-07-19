@@ -11,6 +11,7 @@ import { QUERY_PROFILE } from '../utils/queries';
 import { NEW_PLAYER } from '../utils/mutations';
 
 import Auth from '../utils/auth'
+import { Button } from 'react-bootstrap';
 
 Modal.setAppElement("#root")
 
@@ -90,6 +91,9 @@ export default function Profile() {
     }
     console.log(data)
     const user = data.user
+    const useLogout = () => {
+        Auth.logout()
+    }
 
     return (
         <main>
@@ -98,7 +102,7 @@ export default function Profile() {
                 <button onClick={() => openModal()}>
                     Create a new player
                 </button>
-
+            <Button onClick={useLogout}>Logout</Button>
                 <Modal
 
 

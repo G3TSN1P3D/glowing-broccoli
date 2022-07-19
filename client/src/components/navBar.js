@@ -2,20 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { QUERY_PROFILE } from '../utils/queries';
 import Auth from '../utils/auth';
-import { useMutation, useQuery } from '@apollo/client';
+import {  useQuery } from '@apollo/client';
 export default function Navbar() {
-    const { loading, error, data } = useQuery(QUERY_PROFILE)
+    const { data } = useQuery(QUERY_PROFILE)
     const useLogout = () => {
         Auth.logout();
       };
-    console.log(data)
-    const logout = (event) => {
-        event.preventDefault();
-        Auth.logout();
-      };
+
 
     return (
-        <nav className="navbar d-flex flex-row justify-content-end " style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
+        <nav className="navbar d-flex flex-row justify-content-space-between sticky-top" style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
+            <h1 className='text-primary'>Slugger Stats</h1>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row  ">
                 <Link to="/">
                 <button type="button" className="btn btn-primary btn-sm m-1">Home</button>

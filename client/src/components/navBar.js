@@ -18,24 +18,23 @@ export default function Navbar() {
                 <Link to="/">
                     <li class="p-2">Home</li>
                 </Link>
+                {!data ?  
+                <>
                 <Link to="/login">  
                     <li class="p-2">Log In</li> 
                 </Link>
                 <Link to="/signup">  
                     <li class="p-2">Signup</li>
                 </Link>
-                {
-                    data !== undefined &&
+                </>
+                
+                    :
                     <Link to="/profile">  
                     <li class="p-2">Profile</li>
                 </Link>
                 }
-                <Link to="/profile">  
-                    <li class="p-2">Profile</li>
-                </Link>
-                <Link to="/stats">  
-                    <li class="p-2">Logout</li>
-                </Link>
+               
+                
                 <Link to="/stats">  
                     <li class="p-2">All Player Stats</li>
                 </Link>

@@ -11,22 +11,22 @@ export default function Navbar() {
       };
 
     return (
-        <nav className='navbar'>
-            <ul className='nav-links'>
+        <nav className="navbar   d-flex flex-row justify-content-end" style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}} >
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row   ">
                 <Link to="/">
-                    <li>Home</li>
+                    <li class="p-2">Home</li>
                 </Link>
                 <Link to="/login">  
-                    <li>Log In</li> 
+                    <li class="p-2">Log In</li> 
                 </Link>
                 <Link to="/signup">  
-                    <li>Signup</li>
+                    <li class="p-2">Signup</li>
                 </Link>
                 <Link to="/profile">  
-                    <li>Profile</li>
+                    <li class="p-2">Profile</li>
                 </Link>
                 <Link to="/stats">  
-                    <li>All Player Stats</li>
+                    <li class="p-2">All Player Stats</li>
                 </Link>
             </ul>
         </nav>

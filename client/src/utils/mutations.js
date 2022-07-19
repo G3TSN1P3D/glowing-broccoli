@@ -75,7 +75,7 @@ export const NEW_STAT = gql`
                     result: $result
                 }
             ) {
-                player {
+               
                     first_name
                     last_name
                     stats {
@@ -88,7 +88,7 @@ export const NEW_STAT = gql`
                         stolen_base
                         result
                     }
-                }
+                
             }
         }
 `

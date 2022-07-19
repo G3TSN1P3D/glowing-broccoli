@@ -29,17 +29,12 @@ export default function Signup(props) {
       const { data } = await login({
         variables: { ...formState },
       });
-      
-      console.log(data)
-
-  const token = localStorage.getItem('id_token');
-  Auth.login(token);
-    } catch (e) {
-      console.error(e);
+  
+        Auth.login(data.login.token);
+      } catch (e) {
+        console.error(e);
+      }
     }
-
-
-  };
  // clear form values on component unmount rather than click handler
   useEffect(() => {
     return () => {

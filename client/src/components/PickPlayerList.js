@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { useQuery } from "@apollo/client";
 
-export default function PickPlayerList({players}) {
-    if (!players) {
-        return <h4>You don't have any players! Go to your profile to create some players to record games.</h4>
+import { QUERY_USER_PLAYERS } from "../utils/queries";
+
+export default function PickPlayerList({}) {
+    const { loading, data } = useQuery(QUERY_USER_PLAYERS)
+
+    if (loading) {
+        return <h4>Loading...</h4>
     }
-    const list = players.allPlayers.map((player) => {
+
+    if (!data.userPlayers.length) {
+        return <h4>No players yet</h4>
+    }
+    const list = data.userPlayers.map((player) => {
         return (
             <div key={player._id}>
                 <Link

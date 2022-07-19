@@ -16,6 +16,10 @@ export default function RecordGame() {
         "order": 1,
         "balls": 0,
         "strikes": 0,
+        "walk": false,
+        "strikeout": false,
+        "countForAverage": true,
+        "basesHit": 0,
         "rbi": 0,
         "run": false,
         "stolen_base": 0,
@@ -67,6 +71,7 @@ export default function RecordGame() {
 
     
     function generateButtons() {
+        console.log(status === 'hit')
         if (status === 'at-bat') {
             return (
                 <div>
@@ -80,7 +85,7 @@ export default function RecordGame() {
                         <button className='btn btn-primary col m-1' onClick={addBall}>Ball</button>
                         <button className='btn btn-primary col m-1' onClick={addStrike}>Strike</button>
                         <div className='w-100'></div>
-                        <button className='btn btn-primary col m-1'>Hit</button>
+                        <button className='btn btn-primary col m-1' onClick={goToHit}>Hit</button>
                         <button className='btn btn-primary col m-1'>Out</button>
                     </div>
                 </div>
@@ -89,11 +94,11 @@ export default function RecordGame() {
         if (status === 'hit') {
             return (
                 <div className='row m-1'>
-                    <button className='btn btn-primary col m-1' onClick={addBall}>Single</button>
-                    <button className='btn btn-primary col m-1' onClick={addStrike}>Double</button>
+                    <button className='btn btn-primary col m-1' onClick={() => addHit(1)}>Single</button>
+                    <button className='btn btn-primary col m-1' onClick={() => addHit(2)}>Double</button>
                     <div className='w-100'></div>
-                    <button className='btn btn-primary col m-1'>Triple</button>
-                    <button className='btn btn-primary col m-1'>Home run</button>
+                    <button className='btn btn-primary col m-1' onClick={() => addHit(3)}>Triple</button>
+                    <button className='btn btn-primary col m-1' onClick={() => addHit(4)}>Home run</button>
                 </div>
             )
         }
@@ -113,7 +118,7 @@ export default function RecordGame() {
         // if balls = 4 => Walk
         if(balls === 4) {
             addBase()
-            setStatus('hit')
+            setStatus('walk')
             console.log(base)
             setBalls(0)
         }
@@ -131,6 +136,21 @@ export default function RecordGame() {
             setStrikes(0)
         }
     }
+
+    function goToHit() {
+        console.log('Go To Hit')
+        setStatus('hit')
+        return
+    }
+    function addHit(bases) {
+        const hit = {basesHit: bases}
+        setStats(oldStats => ({
+            ...oldStats,
+            ...hit
+        }))
+        console.log(stats)
+    }
+
     const fieldDisplay = changeField(base)
     const buttonDisplay = generateButtons()
 

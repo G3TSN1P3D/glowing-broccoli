@@ -5,7 +5,9 @@ import Auth from '../utils/auth';
 import { useMutation, useQuery } from '@apollo/client';
 export default function Navbar() {
     const { loading, error, data } = useQuery(QUERY_PROFILE)
-    
+    const useLogout = () => {
+        Auth.logout();
+      };
     console.log(data)
     const logout = (event) => {
         event.preventDefault();
@@ -36,6 +38,7 @@ export default function Navbar() {
                 <Link to="/record">
                 <button type="button" className="btn btn-primary btn-sm m-1">Record Game</button>
                 </Link>
+                <button className="btn btn-primary btn-sm m-1" onClick={useLogout}>Logout</button>
                 </>
                 }
                 <Link to="/stats">  

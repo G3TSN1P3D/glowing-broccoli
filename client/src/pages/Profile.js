@@ -99,9 +99,11 @@ if (loading) {
   return (
     <main>
       <div>
-        <h2>Welcome, {user.first_name}!</h2>
-        <button onClick={() => openModal()}>Create a new player</button>
-        <Button onClick={useLogout}>Logout</Button>
+        <h2 className="display-3 d-flex justify-content-center p-5">Welcome, {user.first_name}!</h2>
+        <div className="d-flex justify-content-center">
+        <button className="btn btn-primary btn-lg m-1" onClick={() => openModal()}>Create a new player</button>
+        {/* <button className="btn btn-primary btn-lg m-1" onClick={useLogout}>Logout</button> */}
+        </div>
         <Modal
           isOpen={open}
           onRequestClose={() => openModal()}
@@ -162,15 +164,12 @@ if (loading) {
           </Row>
         </Form>
         <Row className="justify-content-center">
-          <Link style={{ padding: 15 }} to="/login">
-            Already have an account? Login!
-          </Link>
         </Row>
       </Card>
     </Modal>
     <div>
-        <ul>
-                <ProfilePlayers/>
+        <ul className="display-5 d-flex justify-content-center p-5">
+            <ProfilePlayers/>
         </ul>
     </div>
       </div>

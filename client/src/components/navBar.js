@@ -26,6 +26,9 @@ export default function Navbar() {
                     <li class="p-2">Profile</li>
                 </Link>
                 <Link to="/stats">  
+                    <li class="p-2">Logout</li>
+                </Link>
+                <Link to="/stats">  
                     <li class="p-2">All Player Stats</li>
                 </Link>
             </ul>

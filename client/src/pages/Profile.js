@@ -1,6 +1,6 @@
 // DO NOT TOUCH DREW IS WORKING ON
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { Navigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
@@ -9,7 +9,7 @@ import { NEW_PLAYER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Button, Card, Form, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom'
-import ProfilePlayerList from "../components/ProfilePlayerList";
+import ProfilePlayers from "../components/ProfilePlayers";
 Modal.setAppElement("#root");
 
 export default function Profile() {
@@ -65,11 +65,17 @@ if (error) {
 }
 
 // Player List
-// console.log(useQuery(QUERY_USER_PLAYERS))
-// const { loadingPlayer, userPlayers } = useQuery(QUERY_USER_PLAYERS);
-// const players = userPlayers || []
+const [playerInfo, setPlayerInfo] = useState({})
 
-  if (loading) {
+// useEffect(() => {
+//   const { loadingPlayer, userPlayers } = useQuery(QUERY_USER_PLAYERS)
+//   .then(playerData => setPlayerInfo(playerData));
+// }, [])
+
+// console.log('---playerData---')
+// console.log(playerInfo)
+
+if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -162,17 +168,11 @@ if (error) {
         </Row>
       </Card>
     </Modal>
-    {/* <div>
+    <div>
         <ul>
-            {loadingPlayer ? (
-                <div>Loading...</div>
-            ) : (
-                <ProfilePlayerList
-                    players={players}
-                />
-            )}
+                <ProfilePlayers/>
         </ul>
-    </div> */}
+    </div>
       </div>
     </main>
   );

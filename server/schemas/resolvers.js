@@ -6,7 +6,6 @@ const resolvers = {
   Query: {
     // Should show the User info and all players for the user
     user: async (parent, args, context) => {
-      console.log(context)
       if (context.user) {
         const userData = await User.findById(context.user._id);
         console.log(userData)
@@ -22,6 +21,10 @@ const resolvers = {
       const players = await Player.findOne({ _id: playerId });
       return players;
     },
+    userPlayers: async (parent, args, context) => {
+      const playerList = await Player.find({ user_id: context.user._id })
+      return playerList
+    }
   },
 
   Mutation: {

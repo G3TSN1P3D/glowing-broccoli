@@ -32,7 +32,7 @@ export default function Footer() {
   </div>
 
   <div className="text-center p-3 fixed-bottom" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
-    © 2020 Copyright:
+    © Sluggers
     
   </div>
 </footer>

@@ -7,8 +7,8 @@ export default function Home() {
 
   return (
     <div className="jumbotron">
-      <h1 className="display-4 d-flex"style={{backgroundColor: "justify-content-center"}}  ></h1>
-      <p className="lead">
+      <h1 className="display-4 d-flex"></h1>
+      <p className="lead d-flex justify-content-center">
             Because I for real don't know what to do lmfao
       </p>
       <hr className="my-4" />

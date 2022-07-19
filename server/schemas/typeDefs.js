@@ -33,7 +33,6 @@ const typeDefs = gql`
   }
 
   input NewPlayerInput {
-    # _id: ID
     first_name: String
     last_name: String
     number: Int

@@ -8,7 +8,6 @@ const resolvers = {
     user: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findById(context.user._id);
-        console.log(userData)
         return userData;
       }
       throw new AuthenticationError("User not found");
@@ -18,8 +17,8 @@ const resolvers = {
       return players;
     },
     singlePlayer: async (parent, { playerId }) => {
-      const players = await Player.findOne({ _id: playerId });
-      return players;
+      const player = await Player.findOne({ _id: playerId });
+      return player;
     },
     userPlayers: async (parent, args, context) => {
       const playerList = await Player.find({ user_id: context.user._id })
@@ -50,7 +49,6 @@ const resolvers = {
     },
 
     newPlayer: async (parent, { input }, context) => {
-      console.log(input)
       if (context.user) {
         const player = await Player.create({
           first_name: input.first_name,
@@ -65,7 +63,6 @@ const resolvers = {
           { _id: context.user._id },
           { $push: { saved_players: player._id } }
         );
-        console.log(user);
 
         return player;
       }
@@ -85,7 +82,6 @@ const resolvers = {
     },
     newStat: async (parent, { playerId, input }, context) => {
       if (context.user) {
-        console.log(input);
         const stat = await Player.findOneAndUpdate(
           { _id: playerId },
           {
@@ -103,14 +99,12 @@ const resolvers = {
             },
           }
         );
-        console.log(stat);
         return stat;
       }
       throw new AuthenticationError("Must be logged in to add a stat");
     },
     editStat: async (parent, { playerId, statId, input }, context) => {
       if (context.user) {
-        console.log(input);
         const stat = await Player.findOneAndUpdate(
           { _id: playerId },
           {
@@ -130,7 +124,6 @@ const resolvers = {
           },
           { new: true }
         );
-        console.log(stat);
         return stat;
       }
       throw new AuthenticationError("Must be logged in to edit a stat");

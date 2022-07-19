@@ -13,6 +13,8 @@ import Login from './pages/Signin';
 import Profile from './pages/Profile';
 import StatsAll from './pages/StatsAll';
 import Stats from './pages/Stats'
+import PickPlayer from './pages/PickPlayer'
+import RecordGame from './pages/RecordGame';
 import Navbar from './components/navBar';
 import Footer from './components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +28,6 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem('id_token');
-  console.log(token)
   // return the headers to the context so httpLink can read them
   return {
     headers: {
@@ -73,6 +74,14 @@ function App() {
               <Route 
                 path="/:playerId"
                 element={<Stats />}
+              />
+              <Route
+                path="/record"
+                element={<PickPlayer />}
+              />
+              <Route
+                path="/record/:playerId"
+                element={<RecordGame />}
               />
             </Routes>
           </div>

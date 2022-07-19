@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { QUERY_PROFILE } from '../utils/queries';
 import Auth from '../utils/auth';
-
+import { useMutation, useQuery } from '@apollo/client';
 export default function Navbar() {
+    const { loading, error, data } = useQuery(QUERY_PROFILE)
     
+    console.log(data)
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
@@ -22,6 +24,12 @@ export default function Navbar() {
                 <Link to="/signup">  
                     <li class="p-2">Signup</li>
                 </Link>
+                {
+                    data !== undefined &&
+                    <Link to="/profile">  
+                    <li class="p-2">Profile</li>
+                </Link>
+                }
                 <Link to="/profile">  
                     <li class="p-2">Profile</li>
                 </Link>

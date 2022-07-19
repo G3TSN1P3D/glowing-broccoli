@@ -65,9 +65,9 @@ if (error) {
 }
 
 // Player List
-console.log(useQuery(QUERY_USER_PLAYERS))
-const { loadingPlayer, userPlayers } = useQuery(QUERY_USER_PLAYERS);
-const players = userPlayers || []
+// console.log(useQuery(QUERY_USER_PLAYERS))
+// const { loadingPlayer, userPlayers } = useQuery(QUERY_USER_PLAYERS);
+// const players = userPlayers || []
 
   if (loading) {
     return <div>Loading...</div>;
@@ -162,7 +162,7 @@ const players = userPlayers || []
         </Row>
       </Card>
     </Modal>
-    <div>
+    {/* <div>
         <ul>
             {loadingPlayer ? (
                 <div>Loading...</div>
@@ -172,7 +172,7 @@ const players = userPlayers || []
                 />
             )}
         </ul>
-    </div>
+    </div> */}
       </div>
     </main>
   );

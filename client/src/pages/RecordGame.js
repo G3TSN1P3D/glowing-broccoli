@@ -10,6 +10,7 @@ export default function RecordGame() {
     const [base, setBase] = useState(0)
     const [balls, setBalls] = useState(0)
     const [strikes, setStrikes] = useState(0)
+    const [status, setStatus]  = useState('at-bat')
     const [stats, setStats] = useState({
         "inning": 1,
         "order": 1,
@@ -28,28 +29,28 @@ export default function RecordGame() {
         if (curBase === 0) {
             return (
                 <div className='bg-dark d-flex justify-content-center'>
-                    <img src={home} alt='At bat'/>
+                    <img src={home} alt='At bat' className=' col-12'/>
                 </div>
             )
         }
         if (curBase === 1) {
             return (
                 <div className='bg-dark d-flex justify-content-center'>
-                    <img src={first} alt='On first'/>
+                    <img src={first} alt='On first' className=' col-12'/>
                 </div>
             )
         }
         if (curBase === 2) {
             return (
                 <div className='bg-dark d-flex justify-content-center'>
-                    <img src={second} alt='On second'/>
+                    <img src={second} alt='On second' className=' col-12'/>
                 </div>
             )
         }
         if (curBase === 3) {
             return (
             <div className='bg-dark d-flex justify-content-center'>
-                <img src={third} alt='On third'/>
+                <img src={third} alt='On third' className=' col-12'/>
             </div>
             )
         }
@@ -58,14 +59,15 @@ export default function RecordGame() {
             // set run to true if base is greater than 3
             return (
                 <div className='bg-dark d-flex justify-content-center'>
-                    <img src={home} alt='At bat'/>
+                    <img src={home} alt='At bat' className=' col-12'/>
                 </div>
             )
         }
     }
+
     
-    function generateButtons(curBase) {
-        if (curBase === 0) {
+    function generateButtons() {
+        if (status === 'at-bat') {
             return (
                 <div>
                     <div>
@@ -81,6 +83,17 @@ export default function RecordGame() {
                         <button className='btn btn-primary col m-1'>Hit</button>
                         <button className='btn btn-primary col m-1'>Out</button>
                     </div>
+                </div>
+            )
+        }
+        if (status === 'hit') {
+            return (
+                <div className='row m-1'>
+                    <button className='btn btn-primary col m-1' onClick={addBall}>Single</button>
+                    <button className='btn btn-primary col m-1' onClick={addStrike}>Double</button>
+                    <div className='w-100'></div>
+                    <button className='btn btn-primary col m-1'>Triple</button>
+                    <button className='btn btn-primary col m-1'>Home run</button>
                 </div>
             )
         }
@@ -100,6 +113,7 @@ export default function RecordGame() {
         // if balls = 4 => Walk
         if(balls === 4) {
             addBase()
+            setStatus('hit')
             console.log(base)
             setBalls(0)
         }
@@ -118,7 +132,7 @@ export default function RecordGame() {
         }
     }
     const fieldDisplay = changeField(base)
-    const buttonDisplay = generateButtons(base)
+    const buttonDisplay = generateButtons()
 
     return (
         <main className='m-1'>

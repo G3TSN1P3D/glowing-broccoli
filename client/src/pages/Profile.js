@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { Navigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
-import { QUERY_PROFILE } from "../utils/queries";
+import { QUERY_PROFILE, QUERY_USER_PLAYERS } from "../utils/queries";
 import { NEW_PLAYER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Button, Card, Form, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom'
+import ProfilePlayerList from "../components/ProfilePlayerList";
 Modal.setAppElement("#root");
 
 export default function Profile() {
@@ -50,24 +51,23 @@ export default function Profile() {
 
     try {
       const { data } = await newPlayer({
-        variables: { ...formState },
-      });
+          variables: { ...formState },
+        });
     } catch (e) {
-      console.error(e);
+        console.error(e);
     }
-  };
+};
 
-  // Get Profile Data Logic
-
-  // console.log(userId)
-
-  const { loading, error, data } = useQuery(QUERY_PROFILE);
-
-  if (error) {
+// Get Profile Data Logic
+const { loading, error, data } = useQuery(QUERY_PROFILE);
+if (error) {
     console.log(error);
-  }
+}
 
-  // console.log(data)
+// Player List
+console.log(useQuery(QUERY_USER_PLAYERS))
+const { loadingPlayer, userPlayers } = useQuery(QUERY_USER_PLAYERS);
+const players = userPlayers || []
 
   if (loading) {
     return <div>Loading...</div>;
@@ -83,11 +83,12 @@ export default function Profile() {
       </div>
     );
   }
-  console.log(data);
   const user = data.user;
   const useLogout = () => {
     Auth.logout();
   };
+
+
 
   return (
     <main>
@@ -161,6 +162,17 @@ export default function Profile() {
         </Row>
       </Card>
     </Modal>
+    <div>
+        <ul>
+            {loadingPlayer ? (
+                <div>Loading...</div>
+            ) : (
+                <ProfilePlayerList
+                    players={players}
+                />
+            )}
+        </ul>
+    </div>
       </div>
     </main>
   );

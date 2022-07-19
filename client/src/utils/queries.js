@@ -51,6 +51,30 @@ export const QUERY_SINGLE_PLAYER = gql`
                 rbi
                 run
                 stolen_base
+                result
+            }
+        }
+    }
+`
+
+export const QUERY_USER_PLAYERS = gql`
+    query userPlayers {
+        userPlayers {
+            _id
+            first_name
+            last_name
+            number
+            position
+            handedness
+            stats {
+                inning
+                order
+                balls
+                strikes
+                rbi
+                run
+                stolen_base
+                result
             }
         }
     }

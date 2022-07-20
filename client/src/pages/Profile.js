@@ -64,16 +64,18 @@ if (error) {
     console.log(error);
 }
 
-// Player List
-const [playerInfo, setPlayerInfo] = useState({})
+// Modal style
 
-// useEffect(() => {
-//   const { loadingPlayer, userPlayers } = useQuery(QUERY_USER_PLAYERS)
-//   .then(playerData => setPlayerInfo(playerData));
-// }, [])
-
-// console.log('---playerData---')
-// console.log(playerInfo)
+const modalStyle = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 if (loading) {
     return <div>Loading...</div>;
@@ -99,16 +101,18 @@ if (loading) {
   return (
     <main>
       <div>
-        <h2 className="display-3 d-flex justify-content-center p-5">Welcome, {user.first_name}!</h2>
+        <h3 className="display-4 d-flex justify-content-center m-4">Welcome, {user.first_name}!</h3>
         <div className="d-flex justify-content-center">
-        <button className="btn btn-primary btn-lg m-1" onClick={() => openModal()}>Create a new player</button>
+        <button className="btn btn-primary btn-lg  mb-4" onClick={() => openModal()}>Create a new player</button>
         {/* <button className="btn btn-primary btn-lg m-1" onClick={useLogout}>Logout</button> */}
         </div>
         <Modal
           isOpen={open}
           onRequestClose={() => openModal()}
           contentLabel="New Player"
-        >      <Card style={{ padding: 30 }}>
+          style={modalStyle}
+        >      
+        <div>
         {" "}
         <Form onSubmit={handleFormSubmit}>
           <Form.Group className="mb-3">
@@ -116,7 +120,7 @@ if (loading) {
             <Form.Control
               onChange={handleChange}
               name="first_name"
-              type="first_name"
+              type="text"
               placeholder="Enter First Name"
             />
           </Form.Group>
@@ -125,7 +129,7 @@ if (loading) {
             <Form.Control
               onChange={handleChange}
               name="last_name"
-              type="last_name"
+              type="text"
               placeholder="Enter Last Name"
             />
           </Form.Group>
@@ -158,20 +162,21 @@ if (loading) {
             />
           </Form.Group>
           <Row className="justify-content-center">
-            <Button variant="primary" type="submit">
+            <Button className='mr-2' variant="primary" onClick={() => openModal()}>
+              Cancel
+            </Button>
+            <Button variant="primary" type="submit" onClick={() => window.location.reload()}>
               Submit
             </Button>
           </Row>
         </Form>
         <Row className="justify-content-center">
         </Row>
-      </Card>
+      </div>
     </Modal>
-    <div>
-        <ul className="display-5 d-flex justify-content-center p-5">
-            <ProfilePlayers/>
-        </ul>
-    </div>
+      <div className="d-flex flex-column">
+          <ProfilePlayers/>
+      </div>
       </div>
     </main>
   );

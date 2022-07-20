@@ -14,6 +14,12 @@ const statSchema = new Schema({
   strikes: {
     type: Number
   },
+  count_for_average: {
+    type: Boolean
+  },
+  bases_hit: {
+    type: Number
+  },
   rbi: {
     type: Number
   },

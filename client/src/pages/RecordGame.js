@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import home from '../images/at-bat.png'
 import first from '../images/on-first.png'
 import second from '../images/on-second.png'
@@ -18,14 +18,13 @@ export default function RecordGame() {
     const [rbi, setRbi] = useState(0)
     const [countForAvg, setCountForAvg] = useState(true)
     const [steals, setSteals] = useState(0)
-    const [run, setRun] = useState(false)
+    const [run, setRun] = useState()
+    const [result, setResult] = useState()
     // const [stats, setStats] = useState({
     //     "inning": 1,
     //     "order": 1,
     //     "balls": 0,
     //     "strikes": 0,
-    //     "walk": false,
-    //     "strikeout": false,
     //     "countForAverage": true,
     //     "basesHit": 0,
     //     "rbi": 0,
@@ -41,7 +40,7 @@ export default function RecordGame() {
     function addBase(baseNum) {
         setBase(prevBase => prevBase + baseNum)
         if (base === 3) {
-            runScored()
+            addRun(true)
         }
     }
     
@@ -49,6 +48,8 @@ export default function RecordGame() {
         setBalls(prevBalls => prevBalls + 1)
         if(balls === 3) {
             addBase(1)
+            setResult('walk')
+            setCountForAvg(false)
             setStatus('on-base')
         }
     }
@@ -56,6 +57,8 @@ export default function RecordGame() {
     function addStrike() {
         setStrikes(prevStrikes => prevStrikes + 1)
         if(strikes === 2) {
+            addRun(false)
+            setResult('k')
             setStatus('strikeout')
         }
     }
@@ -64,6 +67,7 @@ export default function RecordGame() {
     function addHit(bases) {
         setBasesHit(bases)
         addBase(bases)
+        setResult('hit')
         rbiCheck()
     }
 
@@ -74,7 +78,8 @@ export default function RecordGame() {
     
     function sacrifice() {
         setCountForAvg(false)
-        rbiCheck()
+        setResult('sacrifice')
+        setStatus('sacrifice')
     }
 
     function addSteal() {
@@ -82,14 +87,20 @@ export default function RecordGame() {
         addBase(1)
     }
 
-    function runScored() {
-        setRun(true)
+    function addRun(scored) {
+        if(scored) {
+            setRun(true)
+        }
+        if(!scored) {
+            setRun(false)
+        }
+        
         endOfSequence()
-        console.log('Run Scored')
     }
 
     function homeRun() {
         setStatus('home-run')
+        setResult('hit')
         setRun(true)
         setBasesHit(4)    
     }
@@ -99,10 +110,25 @@ export default function RecordGame() {
         endOfSequence()
     }
 
+    function sacRuns(rbiCount) {
+        setRbi(rbiCount)
+        setRun(false)
+        endOfSequence()
+    }
+
+    function fieldersChoice() {
+        addBase(1)
+        setResult('Fielders Choice')
+        onBase()
+    }
+
     function goToHit() {
         setStatus('hit')
     }
 
+    function goToOut() {
+        setStatus('out')
+    }
     
     function rbiCheck() {
         setStatus('rbi-check')
@@ -113,67 +139,67 @@ export default function RecordGame() {
     }
     
     function endOfSequence() {
-        logStats()
         setStatus('end-of-sequence')
     }
 
     function nextAB() {
         window.location.reload()
-    }
+    } 
 
-    async function logStats() {
-        setTimeout(async function(){
-                try {
-                    const { data } = await addStats({
-                        variables: {
-                            playerId: playerId,
-                            inning: 1,
-                            order: 1,
-                            balls: balls,
-                            strikes: strikes,
+    useEffect(() => {
+        console.log(run)
+        if(run === true || run === false) {
+            console.log(countForAvg)
+            console.log(basesHit)
+            try {
+                const { data } = addStats({
+                    variables: {
+                        playerId: playerId,
+                        inning: 1,
+                        order: 1,
+                        balls: balls,
+                        strikes: strikes,
+                        count_for_average: countForAvg,
+                        bases_hit: basesHit,
                         rbi: rbi,
                         run: run,
                         stolen_base: steals,
-                        result: 'Test'
+                        result: result
                     }
                 })
             } catch(e) {
                 console.error(e)
             }
-        },2000)
-    } 
-
-    function endGame() {
-        setStatus('game-over')
-    }
+        }
+    }, [run])
 
     // Set the image to run this function so it updates with the base,
     // had some issues with the image loading 
     function changeField(curBase) {
         if (curBase === 0) {
             return (
-                <div className='bg-dark d-flex justify-content-center'>
+                <div className='bg-success d-flex justify-content-center'>
                     <img src={home} alt='At bat' className=' col-12' style={{maxWidth: "30rem"}}/>
                 </div>
             )
         }
         if (curBase === 1) {
             return (
-                <div className='bg-dark d-flex justify-content-center'>
+                <div className='bg-success d-flex justify-content-center'>
                     <img src={first} alt='On first' className=' col-12' style={{maxWidth: "30rem"}}/>
                 </div>
             )
         }
         if (curBase === 2) {
             return (
-                <div className='bg-dark d-flex justify-content-center'>
+                <div className='bg-success d-flex justify-content-center'>
                     <img src={second} alt='On second' className=' col-12' style={{maxWidth: "30rem"}}/>
                 </div>
             )
         }
         if (curBase === 3) {
             return (
-            <div className='bg-dark d-flex justify-content-center'>
+            <div className='bg-success d-flex justify-content-center'>
                 <img src={third} alt='On third' className=' col-12' style={{maxWidth: "30rem"}}/>
             </div>
             )
@@ -190,7 +216,6 @@ export default function RecordGame() {
     }
     
     function generateButtons() {
-        console.log(status === 'hit')
         if (status === 'at-bat') {
             return (
                 <div>
@@ -204,7 +229,42 @@ export default function RecordGame() {
                         <button className='btn btn-primary col m-1' onClick={addStrike}>Strike</button>
                         <div className='w-100'></div>
                         <button className='btn btn-primary col m-1' onClick={goToHit}>Hit</button>
-                        <button className='btn btn-primary col m-1'>Out</button>
+                        <button className='btn btn-primary col m-1' onClick={goToOut}>Out</button>
+                    </div>
+                </div>
+            )
+        }
+
+        if (status === 'strikeout') {
+            return (
+                <div>
+                    <div className='d-flex justify-content-center'>
+                        <h3>
+                            Strikeout
+                        </h3>
+                    </div>
+                    <div className='row m-1'>
+                        <button className='btn btn-primary col m-1' onClick={() => addRun(false)}>Looking</button>
+                        <button className='btn btn-primary col m-1' onClick={() => addRun(false)}>Swinging</button>
+                    </div>
+                </div>
+            )
+        }
+
+        if (status === 'out') {
+            return (
+                <div>
+                    <div className='d-flex justify-content-center'>
+                        <h3>
+                            Strikeout
+                        </h3>
+                    </div>
+                    <div className='row m-1'>
+                        <button className='btn btn-primary col m-1' onClick={() => addRun(false)}>Ground Out</button>
+                        <button className='btn btn-primary col m-1' onClick={() => addRun(false)}>Fly Out</button>
+                        <div className='w-100'></div>
+                        <button className='btn btn-primary col m-1' onClick={fieldersChoice}>Fielders Choice</button>
+                        <button className='btn btn-primary col m-1' onClick={sacrifice}>Sacrifice</button>
                     </div>
                 </div>
             )
@@ -265,14 +325,31 @@ export default function RecordGame() {
             )
         }
 
+        if (status === 'sacrifice') {
+            return (
+                <div>
+                    <div className='d-flex justify-content-center'>
+                        <h3>
+                            How many runs scored?
+                        </h3>
+                    </div>
+                    <div className='row m-1'>
+                        <button className='btn btn-primary col m-1' onClick={() => sacRuns(1)}>1</button>
+                        <button className='btn btn-primary col m-1' onClick={() => sacRuns(2)}>2</button>
+                        <button className='btn btn-primary col m-1' onClick={() => sacRuns(3)}>3</button>
+                    </div>
+                </div>
+            )
+        }
+
         if (status === 'on-base') {
             return (
                 <div className='row m-1'>
                     <button className='btn btn-primary col m-1' onClick={addSteal}>Stolen Base</button>
                     <button className='btn btn-primary col m-1' onClick={() => addBase(1)}>Advanced Base</button>
                     <div className='w-100'></div>
-                    <button className='btn btn-primary col m-1' onClick={endOfSequence}>Thrown Out</button>
-                    <button className='btn btn-primary col m-1' onClick={endOfSequence}>Inning Over</button>
+                    <button className='btn btn-primary col m-1' onClick={() => addRun(false)}>Thrown Out</button>
+                    <button className='btn btn-primary col m-1' onClick={() => addRun(false)}>Inning Over</button>
                 </div>
             )
         }
@@ -282,7 +359,9 @@ export default function RecordGame() {
                 <div className='row m-1'>
                     <button className='btn btn-primary col m-1' onClick={nextAB}>Next At Bat</button>
                     <div className='w-100'></div>
-                    <button className='btn btn-primary col m-1' onClick={endGame}>Game Over</button>
+                    <Link to="/profile" className='row m-1 col-12 p-0 m-0'>
+                        <button className='btn btn-primary col m-1'>Game Over</button>
+                    </Link>
                 </div>
             )
         }
@@ -291,7 +370,6 @@ export default function RecordGame() {
 
     const fieldDisplay = changeField(base)
     const buttonDisplay = generateButtons()
-    console.log(steals)
 
     return (
         <main className='m-1'>

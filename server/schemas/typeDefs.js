@@ -26,6 +26,8 @@ const typeDefs = gql`
     order: Int
     balls: Int
     strikes: Int
+    count_for_average: Boolean
+    bases_hit: Int
     rbi: Int
     run: Boolean
     stolen_base: Int
@@ -45,6 +47,8 @@ const typeDefs = gql`
     order: Int
     balls: Int
     strikes: Int
+    count_for_average: Boolean
+    bases_hit: Int
     rbi: Int
     run: Boolean
     stolen_base: Int

@@ -111,6 +111,8 @@ const resolvers = {
               order: input.order,
               balls: input.balls,
               strikes: input.strikes,
+              count_for_average: input.count_for_average,
+              bases_hit: input.bases_hit,
               rbi: input.rbi,
               run: input.run,
               stolen_base: input.stolen_base,
@@ -125,6 +127,7 @@ const resolvers = {
     },
     editStat: async (parent, { playerId, statId, input }, context) => {
       if (context.user) {
+        console.log(input)
       const stat = await Player.findOneAndUpdate(
         { _id: playerId },
         {
@@ -134,6 +137,8 @@ const resolvers = {
               order: input.order,
               balls: input.balls,
               strikes: input.strikes,
+              count_for_average: input.count_for_average,
+              bases_hit: input.bases_hit,
               rbi: input.rbi,
               run: input.run,
               stolen_base: input.stolen_base,

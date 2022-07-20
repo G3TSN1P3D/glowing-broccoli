@@ -58,6 +58,8 @@ export const NEW_STAT = gql`
         $order: Int,
         $balls: Int,
         $strikes: Int,
+        $count_for_average: Boolean,
+        $bases_hit: Int,
         $rbi: Int,
         $run: Boolean,
         $stolen_base: Int,
@@ -69,13 +71,14 @@ export const NEW_STAT = gql`
                     order: $order,
                     balls: $balls,
                     strikes: $strikes,
+                    count_for_average: $count_for_average,
+                    bases_hit: $bases_hit,
                     rbi: $rbi,
                     run: $run,
                     stolen_base: $stolen_base
                     result: $result
                 }
             ) {
-               
                     first_name
                     last_name
                     stats {
@@ -83,12 +86,13 @@ export const NEW_STAT = gql`
                         order
                         balls
                         strikes
+                        count_for_average
+                        bases_hit
                         rbi
                         run
                         stolen_base
                         result
                     }
-                
             }
         }
 `

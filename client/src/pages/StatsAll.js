@@ -12,10 +12,10 @@ export default function Statsall() {
 
     return (
         <main>
-            <h1>All Players</h1>
-            <div>
+            <h1 className="display-4 d-flex justify-content-center m-4">All Players</h1>
+            <div className='d-flex flex-column'>
                 {loading ? (
-                    <div>Loading</div>
+                    <div>Loading...</div>
                 ) : (
                     <PlayerList
                         players={players}

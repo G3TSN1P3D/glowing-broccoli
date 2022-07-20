@@ -1,0 +1,8 @@
+#home-jumbo {
+    background-image: url('./images/baseballSlide.jpg');
+    background-color: rgb(65, 65, 65);
+    background-blend-mode: multiply;
+    background-size: cover;
+    /* color: #E50022; */
+    font-weight: bolder;
+}

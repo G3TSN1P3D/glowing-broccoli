@@ -26,9 +26,12 @@ export const QUERY_ALL_PLAYERS = gql`
                 order
                 balls
                 strikes
+                count_for_average
+                bases_hit
                 rbi
                 run
                 stolen_base
+                result
             }
         }
     }
@@ -48,6 +51,8 @@ export const QUERY_SINGLE_PLAYER = gql`
                 order
                 balls
                 strikes
+                count_for_average
+                bases_hit
                 rbi
                 run
                 stolen_base
@@ -71,6 +76,8 @@ export const QUERY_USER_PLAYERS = gql`
                 order
                 balls
                 strikes
+                count_for_average
+                bases_hit
                 rbi
                 run
                 stolen_base

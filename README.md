@@ -29,8 +29,10 @@ The following NPM packages are used for this site:
 ## Developers
 
 [Drew Kempen](github.com/dkempen98) - Full Stack
-[Kyle Gorski](github.com/GorillaJxnes) - Full Stack
-[Drew Kempen](github.com/G3TSN1P3D) - Full Stack
+
+[Kyle Gorski](github.com/GorillaJxnes) - Front End
+
+[Salvador Flores](github.com/G3TSN1P3D) - Back End
 
 ## Questions?
 
